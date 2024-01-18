@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "scripting.js"></script>
+    <link rel = "stylesheet" href = "styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Dice Roll
+    </h1>
+
+    <div class = "numdice" id = "numdice">
+        Number of dice
+    </div>
+
+    <form id = "num">
+        <input onclick = "one();" type = "radio" id = "1" name = "numdice" value = "1">
+        <label for = "1">1</label><br>
+        <input onclick = "two();" type = "radio" id = "2" name = "numdice" value = "2">
+        <label for = "2">2</label><br>
+        <input onclick = "three();" type = "radio" id = "3" name = "numdice" value = "3">
+        <label for = "3">3</label><br>
+    </form>
+
+    <div id = "numtimes">
+        Number of times
+    </div>
+
+    <input id = "userInput" type = "text">
+    <button onclick = "setNum();">Submit</button>
+
+    <button onclick = "rollDice();">Roll</button>
+
+    <table>
+        <tr>
+            <th>Result</th>
+            <th>Frequency</th>
+            <th>Mean</th>
+            <th>Median</th>
+            <th>Mode</th>
+            <th>Doubles</th>
+            <th>Triples</th>
+        </tr>
+    </table>
+</body>
+</html>
