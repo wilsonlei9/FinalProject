@@ -10,6 +10,7 @@ let num2;
 let num3;
 let numTimes;
 let arr = [];
+let unique;
 
 function one() 
 {
@@ -34,6 +35,7 @@ function rollDice()
 {
     sum = 0;
     arr = [];
+    unique = new Set([]);
     if (numDice == 1) 
     {
         for (let i = 0; i < numTimes; i++) 
@@ -75,7 +77,75 @@ function rollDice()
     {
         sum += arr[i];
     }
-    mean = Math.round(((sum / arr.length) * 100) / 100);
-    median = 
-    console.log(mean);
+    mean = Math.round((sum / arr.length) * 100) / 100;
+    console.log("Mean = ", mean);
+
+    arr.sort((a , b) => a-b);
+    const middle = Math.floor(arr.length / 2);
+    if (arr.length % 2 == 0)
+    {
+        median = (arr[middle - 1] + arr[middle]) / 2;
+    }
+    else {
+        median = arr[middle];
+    }
+    console.log("Median = ", median);
+
+    getMode(arr);
+    console.log("Mode = ", mode);
+
+
+    for (let i = 0; i < arr.length; i++)
+    {
+        unique.add(arr[i]);
+    }
+
+    console.log("Unique = ", unique);
+
+    createTable();
+}
+
+function getMode(array)
+{
+    let object = {};
+
+    for (let i = 0; i < array.length; i++)
+    {
+        if (object[array[i]])
+        {
+            object[array[i]] += 1;
+        }
+        else {
+            object[array[i]] = 1;
+        }
+    }
+
+    let biggestValue = -1;
+    let biggestValuesKey = -1;
+
+    Object.keys(object).forEach(key => {
+        let value = object[key];
+        if (value > biggestValue)
+        {
+            biggestValue = value;
+            biggestValuesKey = key;
+        }
+    })
+
+    mode = biggestValuesKey;
+}
+
+for (let i = 0; i < arr.length; i++)
+{
+    unique.add(arr[i]);
+}
+
+function createTable()
+{
+    var table = document.getElementById("table");
+    for (let i = 0; i < unique.length; i++)
+    {
+        var row = table.insertRow(0);
+        row.insertCell(i);
+    }
 }
