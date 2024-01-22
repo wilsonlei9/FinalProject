@@ -13,7 +13,8 @@ let numTimes;
 let arr = [];
 let unique;
 let uniqueArray = [];
-let frequency;
+let frequency = 0;
+let number = 0;
 var table = "";
 
 function one() 
@@ -82,6 +83,9 @@ function rollDice()
             arr.push(result);
         }
     }
+
+
+    arr = arr.sort(function(a, b){return a-b});
     console.log(arr);
     for (let i = 0; i < arr.length; i++) 
     {
@@ -106,22 +110,26 @@ function rollDice()
 
     
     getUnique();
-    createTable();
     table = "";
     console.log("Unique = ", uniqueArray);
 
+    createTable();
     for (let i = 0; i < arr.length; i++)
     {
-        for (let j = 0; j < unique.length; i++)
+        number = arr[i];
+        for (let j = 0; j < arr.length; j++)
         {
-            if (arr[i] == unique[j])
+            if (number == arr[j])
             {
                 frequency++;
+                if (j == arr.length - 1)
+                {
+                    console.log("frequency = " + frequency);
+                    table.rows[1].cells[1].innerHTML = frequency;
+                }
             }
-            table.rows[1].cells[1].innerHTML = frequency;
         }
     }
-    createTable();
 }
 
 
@@ -163,6 +171,7 @@ function getUnique()
     {
         unique.add(arr[i]);
     }
+
     uniqueArray = Array.from(unique);
 }
 
@@ -183,4 +192,9 @@ function createTable()
     table += "</table>";
     console.log(table);
     document.getElementById("container").innerHTML = table;
+}
+
+function addValues()
+{
+
 }
