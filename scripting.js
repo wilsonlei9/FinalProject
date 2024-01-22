@@ -1,5 +1,6 @@
 let doubles;
 let triples;
+let result;
 let sum = 0;
 let mean;
 let median;
@@ -11,6 +12,9 @@ let num3;
 let numTimes;
 let arr = [];
 let unique;
+let uniqueArray = [];
+let frequency;
+var table = "";
 
 function one() 
 {
@@ -41,8 +45,10 @@ function rollDice()
         for (let i = 0; i < numTimes; i++) 
         {
             num1 = Math.floor(Math.random() * 6 + 1);
-            console.log(num1);
-            arr.push(num1);
+            console.log("num1 = " + num1);
+            // arr.push(num1);
+            result = num1;
+            arr.push(result);
         }
     }
     if (numDice == 2) 
@@ -51,10 +57,12 @@ function rollDice()
         {
             num1 = Math.floor(Math.random() * 6 + 1);
             num2 = Math.floor(Math.random() * 6 + 1);
-            console.log(num1);
-            console.log(num2);
-            arr.push(num1);
-            arr.push(num2);
+            console.log("num1 = " + num1);
+            console.log("num2 = " + num2);
+            // arr.push(num1);
+            // arr.push(num2);
+            result = num1 + num2;
+            arr.push(result);
         }
     }
     if (numDice == 3) 
@@ -64,12 +72,14 @@ function rollDice()
             num1 = Math.floor(Math.random() * 6 + 1);
             num2 = Math.floor(Math.random() * 6 + 1);
             num3 = Math.floor(Math.random() * 6 + 1);
-            console.log(num1);
-            console.log(num2);
-            console.log(num3);
-            arr.push(num1);
-            arr.push(num2);
-            arr.push(num3);
+            console.log("num1 = " + num1);
+            console.log("num2 = " + num2);
+            console.log("num3 = " + num3);
+            // arr.push(num1);
+            // arr.push(num2);
+            // arr.push(num3);
+            result = num1 + num2 + num3;
+            arr.push(result);
         }
     }
     console.log(arr);
@@ -94,16 +104,27 @@ function rollDice()
     getMode(arr);
     console.log("Mode = ", mode);
 
+    
+    getUnique();
+    createTable();
+    table = "";
+    console.log("Unique = ", uniqueArray);
 
     for (let i = 0; i < arr.length; i++)
     {
-        unique.add(arr[i]);
+        for (let j = 0; j < unique.length; i++)
+        {
+            if (arr[i] == unique[j])
+            {
+                frequency++;
+            }
+            table.rows[1].cells[1].innerHTML = frequency;
+        }
     }
-
-    console.log("Unique = ", unique);
-
     createTable();
 }
+
+
 
 function getMode(array)
 {
@@ -135,17 +156,31 @@ function getMode(array)
     mode = biggestValuesKey;
 }
 
-for (let i = 0; i < arr.length; i++)
+
+function getUnique()
 {
-    unique.add(arr[i]);
+    for (let i = 0; i < arr.length; i++)
+    {
+        unique.add(arr[i]);
+    }
+    uniqueArray = Array.from(unique);
 }
 
 function createTable()
 {
-    var table = document.getElementById("table");
-    for (let i = 0; i < unique.length; i++)
+    var col = 2;
+    table += "<table>";
+    table += "<tr><th>Result</th><th>Frequency</th></tr>"
+    for (let r = 0; r < uniqueArray.length; r++)
     {
-        var row = table.insertRow(0);
-        row.insertCell(i);
+        table += "<tr>";
+        for (let c = 0; c < col; c++)
+        {
+            table += "<td>" + "</td>"
+        }
+        table += "</tr>";
     }
+    table += "</table>";
+    console.log(table);
+    document.getElementById("container").innerHTML = table;
 }
